@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+/// Viajeros con plaza en una travesía de luna nueva.
+model Traveler {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  /// fecha de la noche de luna nueva (YYYY-MM-DD)
+  night     String
+  guests    Int
+  tent      Int      @unique
+  createdAt DateTime @default(now())
+}
